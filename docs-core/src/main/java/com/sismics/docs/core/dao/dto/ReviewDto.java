@@ -78,14 +78,6 @@ public class ReviewDto {
         this.comment = comment;
     }
 
-    public Long getCreateTimestamp() {
-        return createTimestamp;
-    }
-
-    public void setCreateTimestamp(Long createTimestamp) {
-        this.createTimestamp = createTimestamp;
-    }
-
     public String getGPAScore() {
         return GPAScore;
     }
@@ -108,5 +100,13 @@ public class ReviewDto {
 
     public void setEffortScore(String score) {
         this.effortScore = score;
+    }
+
+    public Long getCreateTimestamp() {
+        return createTimestamp;
+    }
+
+    public void setCreateTimestamp(Long createTimestamp) {
+        this.createTimestamp = createTimestamp;
     }
 }

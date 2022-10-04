@@ -17,54 +17,68 @@ import com.google.common.base.MoreObjects;
 @Entity
 @Table(name = "T_REVIEW")
 public class Review implements Loggable {
+
+    /**
+     * Review ID.
+     */
+    @Column(name = "REV_ID_C", length = 36, nullable = false)
+    private String reviewId;
     
     /**
      * Document ID.
      */
-    @Column(name = "DOC_ID_C", length = 36, nullable = false)
+    @Column(name = "REV_IDDOC_C", length = 36, nullable = false)
     private String documentId;
     
     /**
      * Reviewer ID.
      */
-    @Column(name = "REVIEWER_ID", length = 36, nullable = false)
+    @Column(name = "REV_IDUSER_C", length = 36, nullable = false)
     private String reviewerId;
     
     /**
      * GPA score.
      */
-    @Column(name = "SCORE_GPA", length = 36, nullable = false)
+    @Column(name = "REV_GPASCORE_C", length = 36, nullable = false)
     private String GPAScore;
 
     /**
      * Effort score.
      */
-    @Column(name = "SCORE_EFFORT", length = 36, nullable = false)
+    @Column(name = "REV_EFFORTSCORE_C", length = 36, nullable = false)
     private String effortScore;
 
     /**
      * Experience score.
      */
-    @Column(name = "SCORE_EXPERIENCE", length = 36, nullable = false)
+    @Column(name = "REV_EXPERIENCESCORE_C", length = 36, nullable = false)
     private String experienceScore;
 
     /**
      * Skill score.
      */
-    @Column(name = "SCORE_SKILL", length = 36, nullable = false)
+    @Column(name = "REV_SKILLSCORE_C", length = 36, nullable = false)
     private String skillScore;
 
     /**
      * Comments
      */
-    @Column(name = "COMMENTS", length = 4000, nullable = false)
+    @Column(name = "REV_COMMENTS_C", length = 4000, nullable = true)
     private String comments;
     
     /**
      * Creation date.
      */
-    @Column(name = "CREATE_ID", nullable = false)
+    @Column(name = "REV_CREATEDATE_D", nullable = false)
     private Date createDate;
+
+    public String getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(String id) {
+        this.reviewId = id;
+    }
 
     public String getDocId() {
         return documentId;

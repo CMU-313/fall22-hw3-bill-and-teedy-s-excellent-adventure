@@ -23,7 +23,7 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
   /**
    * Average the GPA scores
    */
-  $scope.averageGPA = function() {
+  $scope.calculateAverageGPA = function() {
     var sum = 0
     for (var num of $scope.reviews) {
       sum += num;

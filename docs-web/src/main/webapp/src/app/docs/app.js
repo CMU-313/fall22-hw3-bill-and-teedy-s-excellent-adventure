@@ -420,7 +420,6 @@ angular.module('docs',
     })
     .state('dashboard', {
       url: '/dashboard',
-      abstract: true,
       views: {
         'page': {
           templateUrl: 'partial/docs/dashboard.html',

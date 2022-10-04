@@ -9,7 +9,12 @@ public class ReviewDto {
     /**
      * Review ID.
      */
-    private String id;
+    private String reviewId;
+
+    /**
+     * Document ID.
+     */
+    private String docId;
     
     /**
      * Reviewer name.
@@ -40,6 +45,11 @@ public class ReviewDto {
      * Effort score.
      */
     private String effortScore;
+
+    /**
+     * Skill score.
+     */
+    private String skillScore;
     
     /**
      * Creation date of this review.
@@ -102,6 +112,14 @@ public class ReviewDto {
         this.effortScore = score;
     }
 
+    public String getSkillScore() {
+        return skillScore;
+    }
+
+    public void setSkillScore(String score) {
+        this.skillScore = score;
+    }
+
     public Long getCreateTimestamp() {
         return createTimestamp;
     }
@@ -109,5 +127,5 @@ public class ReviewDto {
     public void setCreateTimestamp(Long createTimestamp) {
         this.createTimestamp = createTimestamp;
     }
-    
+
 }

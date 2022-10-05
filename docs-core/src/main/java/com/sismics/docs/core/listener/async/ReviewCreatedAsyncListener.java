@@ -13,11 +13,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Listener on document created.
+ * Listener on review created.
  * 
  * @author Alexis Axon
  */
-public class DocumentCreatedAsyncListener {
+public class ReviewCreatedAsyncListener {
     /**
      * Logger.
      */
@@ -35,22 +35,22 @@ public class DocumentCreatedAsyncListener {
         }
 
         TransactionUtil.handle(() -> {
-            // Fetch a fresh document
+            // Fetch a review
             Review review = new ReviewDao().getById(event.getReviewId());
-            if (document == null) {
-                // The document has been deleted since
+            if (review == null) {
+                // The review has been deleted since
                 return;
             }
 
             // Add the reviewer
             ContributorDao contributorDao = new ContributorDao();
             Contributor contributor = new Contributor();
-            contributor.setReviewId(event.getReviewId());
+            contributor.setDocumentId(event.getDocId());
             contributor.setUserId(event.getUserId());
             contributorDao.create(contributor);
 
             // Update index
-            AppContext.getInstance().getIndexingHandler().createReview(review);
+            // AppContext.getInstance().getIndexingHandler().createReview(review);
         });
     }
 }

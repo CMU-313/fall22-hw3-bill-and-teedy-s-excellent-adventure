@@ -100,7 +100,7 @@ public class Review implements Loggable {
         return GPAScore;
     }
 
-    public void setGPAScore(score) {
+    public void setGPAScore(String score) {
         this.GPAScore = score;
     }
 
@@ -108,7 +108,7 @@ public class Review implements Loggable {
         return effortScore;
     }
 
-    public void setEffortScore(score) {
+    public void setEffortScore(String score) {
         this.effortScore = score;
     }
 
@@ -116,7 +116,7 @@ public class Review implements Loggable {
         return experienceScore;
     }
 
-    public void setExperienceScore(score) {
+    public void setExperienceScore(String score) {
         this.experienceScore = score;
     }
 
@@ -124,7 +124,7 @@ public class Review implements Loggable {
         return skillScore;
     }
 
-    public void setSkillScore(score) {
+    public void setSkillScore(String score) {
         this.skillScore = score;
     }
     
@@ -134,6 +134,16 @@ public class Review implements Loggable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    // reviews cannot be deleted
+    public Date getDeleteDate() {
+        return null;
+    }
+
+    @Override
+    public String toMessage() {
+        return reviewId;
     }
     
 }

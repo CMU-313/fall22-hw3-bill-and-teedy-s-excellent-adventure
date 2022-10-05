@@ -3,7 +3,7 @@ package com.sismics.docs.core.dao;
 import com.sismics.docs.core.constant.AuditLogType;
 import com.sismics.docs.core.constant.PermType;
 import com.sismics.docs.core.dao.dto.ReviewDto;
-import com.sismics.docs.core.model.jpa.Document;
+import com.sismics.docs.core.model.jpa.Review;
 import com.sismics.docs.core.util.AuditLogUtil;
 import com.sismics.util.context.ThreadLocalContext;
 
@@ -30,13 +30,13 @@ public class ReviewDao {
      * @param reviewer Reviewer
      * @return New ID
      */
-    public String create(Document document, String userId) {
+    public String create(Review review, String userId) {
 
         // Create the UUID
         review.setReviewId(UUID.randomUUID().toString());
         review.setCreateDate(new Date());
         
-        // Create the document
+        // Create the review
         EntityManager em = ThreadLocalContext.get().getEntityManager();
         em.persist(review);
         
@@ -55,7 +55,7 @@ public class ReviewDao {
      */
     public List<Review> findAll(int offset, int limit) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
-        TypedQuery<Document> q = em.createQuery("select r from Review r", Review.class);
+        TypedQuery<Review> q = em.createQuery("select r from Review r", Review.class);
         q.setFirstResult(offset);
         q.setMaxResults(limit);
         return q.getResultList();
@@ -67,7 +67,7 @@ public class ReviewDao {
      * @param userId User ID
      * @return List of reviews
      */
-    public List<Document> findByUserId(String userId) {
+    public List<Review> findByUserId(String userId) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
         TypedQuery<Review> q = em.createQuery("select r from Review r where r.reviewerId = :userId", Review.class);
         q.setParameter("userId", userId);

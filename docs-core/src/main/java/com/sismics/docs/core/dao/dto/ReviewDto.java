@@ -57,11 +57,11 @@ public class ReviewDto {
     private Long createTimestamp;
 
     public String getId() {
-        return id;
+        return reviewId;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.reviewId = id;
     }
 
     public String getReviewerName() {
@@ -92,7 +92,7 @@ public class ReviewDto {
         return GPAScore;
     }
 
-    public void setComment(String score) {
+    public void setGPAScore(String score) {
         this.GPAScore = score;
     }
 

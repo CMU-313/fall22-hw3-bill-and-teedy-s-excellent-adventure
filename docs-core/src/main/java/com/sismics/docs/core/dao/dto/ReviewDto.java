@@ -56,12 +56,20 @@ public class ReviewDto {
      */
     private Long createTimestamp;
 
-    public String getId() {
+    public String getReviewId() {
         return reviewId;
     }
 
-    public void setId(String id) {
+    public void setReviewId(String id) {
         this.reviewId = id;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String id) {
+        this.docId = id;
     }
 
     public String getReviewerName() {

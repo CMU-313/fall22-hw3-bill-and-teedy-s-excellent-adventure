@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Listener on review created.
  * 
- * @author Alexis Axon
+ * @author alexisaxon
  */
 public class ReviewCreatedAsyncListener {
     /**

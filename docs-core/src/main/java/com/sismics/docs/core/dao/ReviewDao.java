@@ -19,7 +19,7 @@ import java.util.UUID;
 /**
  * Review DAO.
  * 
- * @author Alexis Axon
+ * @author alexisaxon
  */
 public class ReviewDao {
 

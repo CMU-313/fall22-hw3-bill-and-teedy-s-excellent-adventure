@@ -10,7 +10,7 @@ import com.sismics.docs.core.model.jpa.Review;
 /**
  * Review utilities.
  *
- * @author Alexis Axon
+ * @author alexisaxon
  */
 public class ReviewUtil {
     /**

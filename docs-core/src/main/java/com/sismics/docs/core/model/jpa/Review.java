@@ -12,7 +12,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Review entity.
  * 
- * @author Alexis Axon
+ * @author alexisaxon
  */
 @Entity
 @Table(name = "T_REVIEW")

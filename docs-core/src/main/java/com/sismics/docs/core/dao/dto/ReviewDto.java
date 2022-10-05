@@ -3,7 +3,7 @@ package com.sismics.docs.core.dao.dto;
 /**
  * Comment DTO.
  *
- * @author Alexis Axon 
+ * @author alexisaxon
  */
 public class ReviewDto {
     /**

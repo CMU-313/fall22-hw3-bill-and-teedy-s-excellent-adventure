@@ -5,7 +5,7 @@ import com.google.common.base.MoreObjects;
 /**
  * Review created event.
  *
- * @author Alexis Axon
+ * @author alexisaxon
  */
 public class ReviewCreatedAsyncEvent extends UserEvent {
     /**

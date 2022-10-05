@@ -21,6 +21,7 @@ public class Review implements Loggable {
     /**
      * Review ID.
      */
+    @Id
     @Column(name = "REV_ID_C", length = 36, nullable = false)
     private String reviewId;
     
@@ -139,6 +140,15 @@ public class Review implements Loggable {
     // reviews cannot be deleted
     public Date getDeleteDate() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("reviewId", reviewId)
+                .add("documentId", documentId)
+                .add("reviewerId", reviewerId)
+                .toString();
     }
 
     @Override

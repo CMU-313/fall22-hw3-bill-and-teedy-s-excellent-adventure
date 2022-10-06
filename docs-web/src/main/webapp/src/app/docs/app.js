@@ -417,6 +417,15 @@ angular.module('docs',
           controller: 'GroupProfile'
         }
       }
+    })
+    .state('dashboard', {
+      url: '/dashboard',
+      views: {
+        'page': {
+          templateUrl: 'partial/docs/dashboard.html',
+          controller: 'Dashboard'
+        }
+      }
     });
 
   // Configuring Restangular

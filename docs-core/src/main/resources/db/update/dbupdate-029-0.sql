@@ -1,0 +1,4 @@
+create cached table T_REVIEW (REV_ID_C varchar(36) not null, REV_IDDOC_C varchar(36) not null, REV_IDUSER_C varchar(36) not null, REV_GPASCORE_C varchar(36) not null, REV_EFFORTSCORE_C varchar(36) not null, REV_EXPERIENCESCORE_C varchar(36) not null, REV_SKILLSCORE_C varchar(36) not null, REV_COMMENTS_C varchar(4000), REV_CREATEDATE_D datetime, primary key (REV_ID_C));
+insert into T_REVIEW(REV_ID_C, REV_IDDOC_C, REV_IDUSER_C, REV_GPASCORE_C, EV_EFFORTSCORE_C, REV_EXPERIENCESCORE_C, REV_SKILLSCORE_C, REV_COMMENTS_C) values("1", "1", "1", "10", "10", "10", "10", "Testing comment!");
+insert into T_REVIEW(REV_ID_C, REV_IDDOC_C, REV_IDUSER_C, REV_GPASCORE_C, EV_EFFORTSCORE_C, REV_EXPERIENCESCORE_C, REV_SKILLSCORE_C, REV_COMMENTS_C) values("1", "1", "1", "6", "6", "6", "6", "Testing comment! -- 2");
+update T_CONFIG set CFG_VALUE_C = '29' where CFG_ID_C = 'DB_VERSION';

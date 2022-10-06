@@ -23,7 +23,7 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
    */
   $scope.loadReviews = function() {
     Restangular.one('review/list').get().then(function(data) {
-      $scope.reviews = JSON.parse(data.reviews);
+      $scope.reviews = data.reviews;
       $scope.total = data.total;
     });
   };
@@ -74,5 +74,4 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
   };
 
   $scope.calculateAverageGPA();
-  console.log($scope.averageGPA);
 });

@@ -1,29 +1,26 @@
-
-<div class="row dashboard">
+<div class="row dashboard" ng-controller='Dashboard as dashboard'>
   <div class="col-md-3 dashbox">
     <div class="well well-3d">
-      <span ng-repeat="review in reviews">{{ $scope.averageGPA }}</span>
+      <span ng-model = "averageGPA">{{ averageGPA }}</span>
       <p>4.0</p>
     </div>
     <h1>GPA</h1>
   </div>
   <div class="col-md-3 dashbox">
     <div class="well well-3d dashbox">
-      <span ng-repeat="review in reviews">{{ $scope.averageEffort }}</span>
-      <p>0</p>
+      <span ng-model = "averageEffort">{{ averageEffort }}</span>
     </div>
     <h1>EFFORT</h1>
   </div>
   <div class="col-md-3 dashbox">
     <div class="well well-3d">
-      <span ng-repeat="review in reviews">{{ $scope.averageExperience }}</span>
-      <p>0</p>
+      <span ng-model = "averageExperience">{{ averageExperience }}</span>
     </div>
     <h1>EXPERIENCE</h1>
   </div>
   <div class="col-md-3 dashbox">
     <div class="well well-3d">
-      <span ng-repeat="review in reviews">{{ $scope.averageSkill }}</span>
+      <span ng-model = "averageSkill">{{ averageSkill }}</span>
       <p>0</p>
     </div>
     <h1>SKILL</h1>

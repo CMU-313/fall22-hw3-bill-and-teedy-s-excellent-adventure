@@ -74,4 +74,11 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
 
   $scope.calculateAverageGPA();
   console.log($scope.averageGPA);
+  $scope.averageGPA = 5;
+  $scope.averageEffort = 5;
+  $scope.averageExperience = 5;
+  $scope.averageSkill = 5;
+
 });
+
+

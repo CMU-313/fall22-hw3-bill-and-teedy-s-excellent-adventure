@@ -19,7 +19,7 @@ public class ReviewDto {
     /**
      * Reviewer name.
      */
-    private String reviewerName;
+    private String reviewerId;
     
     /**
      * Reviewer email.
@@ -72,12 +72,12 @@ public class ReviewDto {
         this.docId = id;
     }
 
-    public String getReviewerName() {
-        return reviewerName;
+    public String getReviewerId() {
+        return reviewerId;
     }
 
-    public void setCreatorName(String reviewerName) {
-        this.reviewerName = reviewerName;
+    public void setReviewerId(String reviewerId) {
+        this.reviewerId = reviewerId;
     }
     
     public String getReviewerEmail() {

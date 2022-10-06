@@ -1,7 +1,6 @@
 package com.sismics.docs.core.dao;
 
 import com.sismics.docs.core.constant.AuditLogType;
-import com.sismics.docs.core.constant.PermType;
 import com.sismics.docs.core.dao.dto.ReviewDto;
 import com.sismics.docs.core.model.jpa.Review;
 import com.sismics.docs.core.util.AuditLogUtil;
@@ -102,4 +101,32 @@ public class ReviewDao {
         return ((Number) query.getSingleResult()).longValue();
     }
 
+    public ReviewDto getReview(String id) {
+        EntityManager em = ThreadLocalContext.get().getEntityManager();
+        StringBuilder sb = 
+            new StringBuilder(" select distinct d.REV_ID_C, d.REV_IDDOC_C, d.REV_IDUSER_C, d.REV_GPAScore_C, d.REV_EFFORTSCORE_C, d.REV_EXPERIENCESCORE_C, d.REV_SKILLSCORE_C, d.REV_COMMENTS_C, d.REV_CREATEDATE_D, ");
+
+        Query q = em.createNativeQuery(sb.toString());
+        q.setParameter("id", id);
+
+        Object[] o;
+        try {
+            o = (Object[]) q.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+        
+        ReviewDto reviewDto = new ReviewDto();
+        int i = 0;
+        reviewDto.setReviewId((String) o[i++]);
+        reviewDto.setDocId((String) o[i++]);
+        reviewDto.setReviewerId((String) o[i++]);
+        reviewDto.setGPAScore((String) o[i++]);
+        reviewDto.setEffortScore((String) o[i++]);
+        reviewDto.setExperienceScore((String) o[i++]);
+        reviewDto.setSkillScore((String) o[i++]);
+        reviewDto.setComment((String) o[i++]);
+        reviewDto.setCreateTimestamp((long) o[i++]);
+        return reviewDto;
+    }
 }

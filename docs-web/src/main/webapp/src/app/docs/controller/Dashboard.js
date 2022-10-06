@@ -58,7 +58,8 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
     var sum = 0
     for (var review of $scope.reviews) {
       sum += parseInt(review["experienceScore"]);
-    }ope.averageExperience = ($scope.total == 0 ? 0 : (sum / $scope.total));
+    }
+    $scope.averageExperience = ($scope.total == 0 ? 0 : (sum / $scope.total));
   };
 
   /**

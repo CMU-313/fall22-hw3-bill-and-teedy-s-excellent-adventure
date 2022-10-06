@@ -103,9 +103,9 @@ public class ReviewDao {
 
     public ReviewDto getReview(String id) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
-        StringBuilder sb = 
-            new StringBuilder(" select distinct d.REV_ID_C, d.REV_IDDOC_C, d.REV_IDUSER_C, d.REV_GPAScore_C, d.REV_EFFORTSCORE_C, d.REV_EXPERIENCESCORE_C, d.REV_SKILLSCORE_C, d.REV_COMMENTS_C, d.REV_CREATEDATE_D, ");
-
+        StringBuilder sb = new StringBuilder(" select distinct r.REV_ID_C, r.REV_IDDOC_C, r.REV_IDUSER_C, r.REV_GPAScore_C, r.REV_EFFORTSCORE_C, r.REV_EXPERIENCESCORE_C, r.REV_SKILLSCORE_C, r.REV_COMMENTS_C, r.REV_CREATEDATE_D, ");
+            sb.append(" from T_Review r ");
+            sb.append(" where r.REV_ID_C = :id");
         Query q = em.createNativeQuery(sb.toString());
         q.setParameter("id", id);
 

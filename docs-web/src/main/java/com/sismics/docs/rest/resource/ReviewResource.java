@@ -1,46 +1,5 @@
 package com.sismics.docs.rest.resource;
-import com.google.common.base.Joiner;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.sismics.docs.core.constant.AclType;
-import com.sismics.docs.core.constant.ConfigType;
-import com.sismics.docs.core.constant.Constants;
-import com.sismics.docs.core.constant.PermType;
-import com.sismics.docs.core.dao.*;
-import com.sismics.docs.core.dao.criteria.DocumentCriteria;
-import com.sismics.docs.core.dao.criteria.TagCriteria;
-import com.sismics.docs.core.dao.dto.*;
-import com.sismics.docs.core.event.DocumentCreatedAsyncEvent;
-import com.sismics.docs.core.event.DocumentDeletedAsyncEvent;
-import com.sismics.docs.core.event.DocumentUpdatedAsyncEvent;
-import com.sismics.docs.core.event.FileDeletedAsyncEvent;
-import com.sismics.docs.core.model.context.AppContext;
-import com.sismics.docs.core.model.jpa.Document;
-import com.sismics.docs.core.model.jpa.File;
-import com.sismics.docs.core.model.jpa.User;
-import com.sismics.docs.core.util.*;
-import com.sismics.docs.core.util.jpa.PaginatedList;
-import com.sismics.docs.core.util.jpa.PaginatedLists;
-import com.sismics.docs.core.util.jpa.SortCriteria;
-import com.sismics.rest.exception.ClientException;
 import com.sismics.rest.exception.ForbiddenClientException;
-import com.sismics.rest.exception.ServerException;
-import com.sismics.rest.util.AclUtil;
-import com.sismics.rest.util.RestUtil;
-import com.sismics.rest.util.ValidationUtil;
-import com.sismics.util.EmailUtil;
-import com.sismics.util.JsonUtil;
-import com.sismics.util.context.ThreadLocalContext;
-import com.sismics.util.mime.MimeType;
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
-import org.glassfish.jersey.media.multipart.FormDataBodyPart;
-import org.glassfish.jersey.media.multipart.FormDataParam;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.DateTimeFormatterBuilder;
-import org.joda.time.format.DateTimeParser;
 import com.sismics.docs.core.dao.ReviewDao;
 import com.sismics.docs.core.dao.dto.ReviewDto;
 import com.sismics.docs.core.model.jpa.Review;
@@ -48,18 +7,8 @@ import com.sismics.docs.core.model.jpa.Review;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
-import java.text.MessageFormat;
 import java.util.*;
 
 
@@ -112,7 +61,7 @@ public class ReviewResource extends BaseResource {
         JsonObjectBuilder review = Json.createObjectBuilder()
                 .add("reviewId", reviewDto.getReviewId())
                 .add("docId", reviewDto.getDocId())
-                .add("reviewerName", reviewDto.getReviewerName())
+                .add("reviewerId", reviewDto.getReviewerId())
                 .add("GPAScore", reviewDto.getGPAScore())
                 .add("experienceScore", reviewDto.getExperienceScore())
                 .add("effortScore", reviewDto.getEffortScore())
@@ -135,14 +84,12 @@ public class ReviewResource extends BaseResource {
      * @apiSuccess {Object[]} reviews List of reviews
      * @apiSuccess {String} reviews.reviewId ID
      * @apiSuccess {String} reviews.docId Document ID 
-     * @apiSuccess {String} reviews.reviewerName Reviewer Name
-     * @apiSuccess {String} reviews.reviewerEmail Reviewer Email
-     * @apiSuccess {String} reviews.comment Comment
+     * @apiSuccess {String} reviews.reviewerId Reviewer ID
      * @apiSuccess {String} reviews.GPAScore GPA
      * @apiSuccess {String} reviews.experienceScore Experience
      * @apiSuccess {String} reviews.effortScore Effort
      * @apiSuccess {String} reviews.skillScore Skill
-     * @apiSuccess {Number} reviews.createTimeStamp Create Data
+     * @apiSuccess {Number} reviews.createDate Create Date
      * @apiError (client) ForbiddenError Access denied
      * @apiError (server) SearchError Error searching in documents
      * @apiPermission user
@@ -160,7 +107,8 @@ public class ReviewResource extends BaseResource {
             throw new ForbiddenClientException();
         }
         ReviewDao reviewDao = new ReviewDao();
-        List<Review> reviewList = reviewDao.findAll(0, reviewDao.getReviewCount() + 1);
+        // There was an issue here of ReviewDao.getTotal or whatever being a long
+        List<Review> reviewList = reviewDao.findAll(0, Integer.MAX_VALUE);
         JsonArrayBuilder reviews = Json.createArrayBuilder();
 
         JsonObjectBuilder response = Json.createObjectBuilder();
@@ -170,12 +118,10 @@ public class ReviewResource extends BaseResource {
             JsonObjectBuilder documentObjectBuilder = Json.createObjectBuilder()
                     .add("reviewId", review.getReviewId())
                     .add("docId", review.getDocId())
-                    .add("reviewerName", review.getReviewerName())
                     .add("GPAScore", review.getGPAScore())
                     .add("experienceScore", review.getExperienceScore())
                     .add("effortScore", review.getEffortScore())
-                    .add("skillScore", review.getSkillScore())
-                    .add("createTimeStamp", review.getCreateTimestamp());
+                    .add("skillScore", review.getSkillScore());
             reviews.add(documentObjectBuilder);
         }
 

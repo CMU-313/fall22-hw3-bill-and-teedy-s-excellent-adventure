@@ -423,7 +423,7 @@ angular.module('docs',
       views: {
         'page': {
           templateUrl: 'partial/docs/review.html',
-          controller: 'Review'
+          controller: 'ReviewTest'
         }
       }
     });

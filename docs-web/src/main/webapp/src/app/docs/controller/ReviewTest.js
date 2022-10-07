@@ -3,7 +3,7 @@
 /**
  * Review controller.
  */
-angular.module('docs').controller('Review', function ($scope, $rootScope, $timeout, $state, Restangular, $q, $filter, $uibModal) {
+angular.module('docs').controller('ReviewTest', function ($scope, $rootScope, $timeout, $state, Restangular, $q, $filter, $uibModal) {
   /**
    * Scope variables.
    */
@@ -18,26 +18,30 @@ angular.module('docs').controller('Review', function ($scope, $rootScope, $timeo
    * Testing Json File
    */
 
-  JSON_STRING ='{"total":"3",' +
-   '"reviews":[{"reviewId":"1", "GPAScore":"3", "effortScore":"4", "experienceScore":"4", "skillScore":"5"},' + 
-              '{"reviewId":"2", "GPAScore":"4", "effortScore":"2", "experienceScore":"5", "skillScore":"3"},' +
-              '{"reviewId":"3", "GPAScore":"2", "effortScore":"3", "experienceScore":"5", "skillScore":"1"},';
-  JSON_OBJECT = JSON.parse(JSON_STRING);
+  const JS_OBJECT = {"total":"3",
+               "reviews": [
+                {"reviewId":"1", "GPAScore":"3", "effortScore":"4", "experienceScore":"5", "skillScore":"5"},
+                {"reviewId":"2", "GPAScore":"4", "effortScore":"3", "experienceScore":"1", "skillScore":"3"},
+                {"reviewId":"3", "GPAScore":"5", "effortScore":"1", "experienceScore":"2", "skillScore":"4"},
+               ]};
 
   /**
    * Load new reviews page.
    */
-  $scope.loadReviews = function() {
-    Restangular.one('review/list')
-    .get()
-    .then(function(response) {
-      response = JSON_OBJECT
-      console.log(response)
-      $scope.reviews = response.reviews;
-      $scope.total = response.total;
-    });
-  };
-  $scope.loadReviews();
+  // $scope.loadReviews = function() {
+  //   Restangular.one('review/list')
+  //   .get()
+  //   .then(function(response) {
+  //     response = JS_OBJECT;
+  //     console.log(response);
+  //     $scope.reviews = response.reviews;
+  //     $scope.total = response.total;
+  //   });
+  // };
+  // $scope.loadReviews();
+  const response = JS_OBJECT; 
+  $scope.reviews = response.reviews;
+  $scope.total = response.total;
 
   /**
    * Average the GPA scores
@@ -87,4 +91,9 @@ angular.module('docs').controller('Review', function ($scope, $rootScope, $timeo
   $scope.calculateAverageEffort();
   $scope.calculateAverageExperience();
   $scope.calculateAverageSkill();
+
+  $scope.averageGPA =  $scope.averageGPA.toFixed(2);
+  $scope.averageEffort = $scope.averageEffort.toFixed(2);
+  $scope.averageExperience = $scope.averageExperience.toFixed(2);
+  $scope.averageSkill = $scope.averageSkill.toFixed(2);
 });

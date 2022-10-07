@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Reviews controller.
+ * Review controller.
  */
 angular.module('docs').controller('Review', function ($scope, $rootScope, $timeout, $state, Restangular, $q, $filter, $uibModal) {
   /**

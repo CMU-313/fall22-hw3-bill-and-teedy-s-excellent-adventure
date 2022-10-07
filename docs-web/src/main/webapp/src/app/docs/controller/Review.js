@@ -74,7 +74,6 @@ angular.module('docs').controller('Review', function ($scope, $rootScope, $timeo
   };
 
   $scope.calculateAverageGPA();
-  console.log($scope.averageGPA);
   $scope.averageGPA = 3.7;
   $scope.averageEffort = 4.6;
   $scope.averageExperience = 3.2;

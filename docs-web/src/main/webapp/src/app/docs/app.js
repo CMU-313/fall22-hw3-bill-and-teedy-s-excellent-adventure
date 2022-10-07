@@ -417,6 +417,15 @@ angular.module('docs',
           controller: 'GroupProfile'
         }
       }
+    })
+    .state('review', {
+      url: '/review',
+      views: {
+        'page': {
+          templateUrl: 'partial/docs/review.html',
+          controller: 'Review'
+        }
+      }
     });
 
   // Configuring Restangular

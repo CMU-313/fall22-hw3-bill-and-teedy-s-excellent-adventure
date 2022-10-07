@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * Dashboard controller.
+ * Review controller.
  */
-angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $timeout, $state, Restangular, $q, $filter, $uibModal) {
+angular.module('docs').controller('Review', function ($scope, $rootScope, $timeout, $state, Restangular, $q, $filter, $uibModal) {
   /**
    * Scope variables.
    */
@@ -19,10 +19,17 @@ angular.module('docs').controller('Dashboard', function ($scope, $rootScope, $ti
    */
 
   /**
-   * Load new documents page.
+   * Load new reviews page.
    */
   $scope.loadReviews = function() {
-    Restangular.one('review/list').get().then(function(data) {
+    console.log(2)
+    Restangular.one('review/list')
+    .get({
+      offset: $scope.offset,
+      limit: $scope.limit
+    })
+    .then(function(data) {
+      console.log(1)
       $scope.reviews = data.reviews;
       $scope.total = data.total;
     });

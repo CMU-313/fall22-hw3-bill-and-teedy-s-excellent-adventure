@@ -418,12 +418,12 @@ angular.module('docs',
         }
       }
     })
-    .state('dashboard', {
-      url: '/dashboard',
+    .state('review', {
+      url: '/review',
       views: {
         'page': {
-          templateUrl: 'partial/docs/dashboard.html',
-          controller: 'Dashboard'
+          templateUrl: 'partial/docs/review.html',
+          controller: 'Review'
         }
       }
     });

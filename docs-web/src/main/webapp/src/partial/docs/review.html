@@ -1,0 +1,30 @@
+<div class="review-title">
+  <h1>Dashboard of Review Averages</h1>
+  <p>Here you can see averages of statistics across all reviews.</p>
+</div>
+<div class="row review" ng-controller='Review as review'>
+  <div class="col-md-3 revbox">
+    <div class="well well-3d">
+      <p ng-model = "averageGPA">{{ averageGPA }}</p>
+    </div>
+    <h1>GPA</h1>
+  </div>
+  <div class="col-md-3 revbox">
+    <div class="well well-3d revbox">
+      <p ng-model = "averageEffort">{{ averageEffort }}</p>
+    </div>
+    <h1>EFFORT</h1>
+  </div>
+  <div class="col-md-3 revbox">
+    <div class="well well-3d">
+      <p ng-model = "averageExperience">{{ averageExperience }}</p>
+    </div>
+    <h1>EXPERIENCE</h1>
+  </div>
+  <div class="col-md-3 revbox">
+    <div class="well well-3d">
+      <p ng-model = "averageSkill">{{ averageSkill }}</p>
+    </div>
+    <h1>SKILLS</h1>
+  </div>
+</div>

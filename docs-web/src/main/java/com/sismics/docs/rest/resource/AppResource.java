@@ -7,6 +7,7 @@ import com.sismics.docs.core.dao.ConfigDao;
 import com.sismics.docs.core.dao.DocumentDao;
 import com.sismics.docs.core.dao.FileDao;
 import com.sismics.docs.core.dao.UserDao;
+import com.sismics.docs.core.dao.ReviewDao;
 import com.sismics.docs.core.event.RebuildIndexAsyncEvent;
 import com.sismics.docs.core.model.context.AppContext;
 import com.sismics.docs.core.model.jpa.Config;
@@ -88,6 +89,7 @@ public class AppResource extends BaseResource {
         Boolean guestLogin = ConfigUtil.getConfigBooleanValue(ConfigType.GUEST_LOGIN);
         String defaultLanguage = ConfigUtil.getConfigStringValue(ConfigType.DEFAULT_LANGUAGE);
         UserDao userDao = new UserDao();
+        ReviewDao reviewDao = new ReviewDao();
         DocumentDao documentDao = new DocumentDao();
         String globalQuotaStr = System.getenv(Constants.GLOBAL_QUOTA_ENV);
         long globalQuota = 0;
@@ -105,7 +107,8 @@ public class AppResource extends BaseResource {
                 .add("free_memory", Runtime.getRuntime().freeMemory())
                 .add("document_count", documentDao.getDocumentCount())
                 .add("active_user_count", userDao.getActiveUserCount())
-                .add("global_storage_current", userDao.getGlobalStorageCurrent());
+                .add("global_storage_current", userDao.getGlobalStorageCurrent())
+                .add("review_count", reviewDao.getReviewCount());
         if (globalQuota > 0) {
             response.add("global_storage_quota", globalQuota);
         }

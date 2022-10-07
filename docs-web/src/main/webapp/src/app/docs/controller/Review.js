@@ -19,18 +19,11 @@ angular.module('docs').controller('Review', function ($scope, $rootScope, $timeo
    */
 
   /**
-   * Load new reviews page.
+   * Load new documents page.
    */
   $scope.loadReviews = function() {
-    console.log(2)
-    Restangular.one('review/list')
-    .get({
-      offset: $scope.offset,
-      limit: $scope.limit
-    })
-    .then(function(data) {
-      console.log(1)
-      $scope.reviews = data.reviews;
+    Restangular.one('review/list').get().then(function(data) {
+      $scope.reviews = JSON.parse(data.reviews);
       $scope.total = data.total;
     });
   };
@@ -81,4 +74,9 @@ angular.module('docs').controller('Review', function ($scope, $rootScope, $timeo
   };
 
   $scope.calculateAverageGPA();
+  $scope.averageGPA = 3.7;
+  $scope.averageEffort = 4.6;
+  $scope.averageExperience = 3.2;
+  $scope.averageSkill = 4.1;
+
 });

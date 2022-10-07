@@ -48,9 +48,6 @@ public class ReviewCreatedAsyncListener {
             contributor.setDocumentId(event.getDocId());
             contributor.setUserId(event.getUserId());
             contributorDao.create(contributor);
-
-            // Update index
-            // AppContext.getInstance().getIndexingHandler().createReview(review);
         });
     }
 }

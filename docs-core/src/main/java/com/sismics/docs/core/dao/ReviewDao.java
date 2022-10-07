@@ -2,6 +2,7 @@ package com.sismics.docs.core.dao;
 
 import com.sismics.docs.core.constant.AuditLogType;
 import com.sismics.docs.core.dao.dto.ReviewDto;
+import com.sismics.docs.core.model.jpa.Document;
 import com.sismics.docs.core.model.jpa.Review;
 import com.sismics.docs.core.util.AuditLogUtil;
 import com.sismics.util.context.ThreadLocalContext;
@@ -54,9 +55,7 @@ public class ReviewDao {
      */
     public List<Review> findAll(int offset, int limit) {
         EntityManager em = ThreadLocalContext.get().getEntityManager();
-        TypedQuery<Review> q = em.createQuery("select r from Review r", Review.class);
-        q.setFirstResult(offset);
-        q.setMaxResults(limit);
+        TypedQuery<Review> q = em.createQuery("select r from Review r where 1 = 1", Review.class);
         return q.getResultList();
     }
 
